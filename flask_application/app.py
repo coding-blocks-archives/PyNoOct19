@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from scrap import scrap_snapdeal
 
 app = Flask(__name__)
 
@@ -12,13 +13,15 @@ USERS = [
     "name": "Bipin",
     "language": "python",
     "designation": "Developer"
-  },
-  {
-    "name": "Rahul",
-    "language": "python",
-    "designation": "Developer"
-  },
+  }
 ]
+
+@app.route('/scrap', methods = ['GET', 'POST'])
+def scrap():
+  products = None
+  if request.method == 'POST':
+    products = scrap_snapdeal(request.form['query'])
+  return render_template('scrap.html', products = products)
 
 @app.route('/users')
 def users():

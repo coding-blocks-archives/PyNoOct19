@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Scrapper</h1>
+    <form action="" method="post">
+      <div>
+        <label for="">Query</label>
+        <input type="text" name="query" id="">
+      </div>
+      <div>
+        <button type="submit">Search</button>
+      </div>
+    </form>
+
+    {% if products %}
+      <ul>
+        {% for product in products %}
+          <li>
+            <img src="{{ product['img'] }}" alt="">
+            {{ product['title'] }} - {{ product['price'] }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </body>
+</html>
